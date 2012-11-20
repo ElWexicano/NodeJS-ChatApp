@@ -1,0 +1,42 @@
+!!! 5
+html
+ head
+  title= title
+  link(rel='stylesheet', href='/stylesheets/bootstrap.css')
+  link(rel='stylesheet', href='/stylesheets/styles.css')
+ body
+  div.container
+   div.row.span12(style='margin-bottom: 0px')
+    div.page-header
+     h2.centered-header The Node Chat App</small>
+    block content
+     div.span7.well
+       h4.centered-header Users Messages
+       table.table(style='messagesList')
+        tbody(data-bind='foreach: messages')
+         tr
+          td(data-bind='text: time')
+          td.text-info(data-bind='text: content')
+          td(data-bind='text: user')
+       input.span6.text-info(id='message', type='text', placeholder='Type message here')
+     div.span4.pull-right
+      div.well
+       h4.centered-header Users Online
+       table.table(style='usersList')
+        thead
+         tr
+          th Name
+          th Online Since
+        tbody(data-bind='foreach: users')
+         tr
+          td(data-bind='text: name')
+          td(data-bind='text: onlineSince')
+    script(type='text/javascript', src='http://code.jquery.com/jquery-latest.js')
+    script(type='text/javascript', src='http://twitter.github.com/bootstrap/assets/js/bootstrap.js');
+    script(type='text/javascript', src='javascripts/knockout-2.1.0.js');
+    script(type='text/javascript', src='socket.io/socket.io.js');
+    script(type='text/javascript', src='/javascripts/chat.js');
+    script(type='text/javascript', src='/javascripts/index.js');
+   hr
+   footer.centered-header
+    p Created by <a href='https://www.twitter.com/iamshanedoyle'>iamshanedoyle</a> for fun!
