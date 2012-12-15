@@ -9,19 +9,37 @@ html
    div.row.span12(style='margin-bottom: 0px')
     div.page-header
      h2.centered-header The Node Chat App</small>
+    div.alert.alert-info
+     h3 Welcome to the Node Chat App.
+     div(data-bind='visible: !showMessageInput()')
+      p Type your name in and then press the "Go" button to use the application.
+      div.input-append
+       input.span3(type='text', placeholder='Enter your name', data-bind='value: username')
+       button.btn(type='button', data-bind='click: checkUsername') Go!
+     divoldUser(data-bind='visible: showMessageInput()')
+      h4(data-bind='visible: showMessageInput()')
+       | Hi&nbsp;
+       span(data-bind='text: username')
+       | !! You are currently&nbsp;
+       span.label.label-success Connected
     block content
      div.span7.well
        h4.centered-header Users Messages
        table.table(style='messagesList')
+        thead
+         tr
+          th Time
+          th Message
+          th User
         tbody(data-bind='foreach: messages')
          tr
           td(data-bind='text: time')
           td.text-info(data-bind='text: content')
           td(data-bind='text: user')
-       input.span6.text-info(id='message', type='text', placeholder='Type message here')
+       input.span6.text-info(id='message', type='text', placeholder='Type message here', data-bind='visible: showMessageInput()')
      div.span4.pull-right
       div.well
-       h4.centered-header Users Online
+       h4.centered-header(data-bind='text: numberUsers')
        table.table(style='usersList')
         thead
          tr
@@ -31,11 +49,11 @@ html
          tr
           td(data-bind='text: name')
           td(data-bind='text: onlineSince')
-    script(type='text/javascript', src='http://code.jquery.com/jquery-latest.js')
-    script(type='text/javascript', src='http://twitter.github.com/bootstrap/assets/js/bootstrap.js');
+    script(type='text/javascript', src='javascripts/jquery-1.8.3.js')
+    script(type='text/javascript', src='javascripts/bootstrap.js');
     script(type='text/javascript', src='javascripts/knockout-2.1.0.js');
     script(type='text/javascript', src='socket.io/socket.io.js');
-    script(type='text/javascript', src='/javascripts/chat.js');
+    script(type='text/javascript', src='/javascripts/models.js');
     script(type='text/javascript', src='/javascripts/index.js');
    hr
    footer.centered-header

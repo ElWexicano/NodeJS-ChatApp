@@ -17,15 +17,5 @@ module.exports = function(app, express){
     app.use(express.static(__dirname + '/public'));
   });
   
-  // Development Configuration
-  app.configure('development', function(){
-    app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
-  });
-  
-  // Production Configuration
-  app.configure('production', function(){
-    app.use(express.errorHandler());
-  });
-  
   return config;
 };
